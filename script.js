@@ -1,0 +1,1 @@
+// Minimal JS file for KOACH Creative Agency landing page 

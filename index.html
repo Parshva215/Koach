@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOACH Creative Agency</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Vanilla Tilt.js -->
+  <script src="https://unpkg.com/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo active">KOACH</div>
+      <nav>
+        <a href="#about" class="nav-link">ABOUT</a>
+        <a href="#work" class="nav-link">WORK</a>
+        <a href="#services" class="nav-link">SERVICES</a>
+        <a href="#team" class="nav-link">TEAM</a>
+        <button class="contact-btn mobile-contact">CONTACT</button>
+      </nav>
+      <button class="contact-btn desktop-contact">CONTACT</button>
+      <button class="menu-toggle" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div class="menu-overlay"></div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content" data-aos="fade" data-aos-duration="800">
+      <div class="spacer"></div>
+      <a href="#contact" class="discuss-btn">Let's discuss <img src="Arrow 1.png" alt="Arrow" class="arrow-img"></a>
+    </div>
+    <div class="hero-visual" data-aos="fade" data-aos-duration="800" data-aos-offset="0">
+      <div class="tilt-container" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-perspective="1000">
+        <img src="creativeagency.png" alt="Creative Agency" class="hero-image" />
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-info">
+        <div class="footer-logo">KOACH</div>
+        <p class="footer-description">We craft immersive digital experiences that inspire and elevate your brand through strategic design and innovative technology.</p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-nav">
+        <h4 class="footer-nav-title">Services</h4>
+        <div class="footer-nav-links">
+          <a href="#">UI/UX Design</a>
+          <a href="#">Branding</a>
+          <a href="#">GFX & VFX Design</a>
+          <a href="#">Cinematography</a>
+        </div>
+      </div>
+      
+      <div class="footer-nav">
+        <h4 class="footer-nav-title">Company</h4>
+        <div class="footer-nav-links">
+          <a href="#">About Us</a>
+          <a href="#">Our Team</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+      
+      <div class="footer-nav">
+        <h4 class="footer-nav-title">Contact</h4>
+        <div class="footer-nav-links">
+          <a href="#">koachstudio@gmail.com</a>
+          <a href="#">+91 7021778680</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      © 2025 KOACH Creative Agency. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize AOS with custom settings
+      AOS.init({
+        easing: 'ease',
+        once: true,
+        offset: 0,
+        duration: 800
+      });
+      
+      // Initialize vanilla-tilt with reversed settings and full-page mouse tracking
+      const tiltElement = document.querySelector(".tilt-container");
+      
+      // Variables for smooth mouse tracking
+      let currentX = 0, currentY = 0;
+      let targetX = 0, targetY = 0;
+      
+      // Make the tilt effect respond to mouse movement across the entire screen
+      document.addEventListener('mousemove', function(e) {
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        // Set target values based on mouse position (reversed)
+        targetX = (0.5 - mouseY) * 18; 
+        targetY = (mouseX - 0.5) * 18;
+        
+        // Direct application without smoothing
+        if (tiltElement) {
+          tiltElement.style.transform = `perspective(1000px) rotateX(${targetX}deg) rotateY(${targetY}deg) scale3d(1.03, 1.03, 1.03)`;
+        }
+      });
+      
+      // Header scroll effect
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      
+      // Mobile menu toggle
+      const menuToggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('nav');
+      const menuOverlay = document.querySelector('.menu-overlay');
+      const body = document.body;
+      
+      function toggleMenu() {
+        nav.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+        
+        // Toggle between menu icon and close icon
+        const icon = menuToggle.querySelector('i');
+        if (icon.classList.contains('fa-bars')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+          body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+          body.style.overflow = ''; // Restore scrolling
+        }
+      }
+      
+      menuToggle.addEventListener('click', toggleMenu);
+      menuOverlay.addEventListener('click', toggleMenu);
+      
+      // Close menu when clicking a nav link
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          if (nav.classList.contains('active')) {
+            toggleMenu();
+          }
+        });
+      });
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html> 
